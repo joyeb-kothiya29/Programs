@@ -4,7 +4,7 @@
 int nv=0; // used to add the number of vertex
 int rv; // used to remove the vertex
 int e1,e2; // used for edges
-int k; // used for switch case
+int m; // used for switch case
 int i,j,a[100][100]; // used in for loops
 char ch; // used to continue to add edges condtion
 int visited[100]; // used for the  BFS and DFS Function
@@ -18,22 +18,27 @@ void REMOVE_VERTEX();
 void REMOVE_EDGE();
 void BFS_INPUT();
 void BFS_DISPLAY();
+void DFS_INPUT();
+void DFS_OUTPUT();
 void exit();
 
 int main()
 {
 	while(1)
 	{
+		printf("\n\t---Menu---");
+		printf("\n");
 		printf("\n1. ADD VERTEX");
 		printf("\n2. DISPLAY GRAPH");
 		printf("\n3. EXIT");
 		printf("\n4. ADD EDGE");
 		printf("\n5. REMOVE VERTEX");
 		printf("\n6. REMOVE EDGE ");
-		printf("\n7. BFS Traversal \n");
+		printf("\n7. BFS Traversal");
+		printf("\n8. DFS Traversal\n");
 		printf("\n   Enter Condition: ");
-		scanf("%d",&k);
-		switch(k)
+		scanf("%d",&m);
+		switch(m)
 		{
 			case 1:
 				ADD_VERTEX();
@@ -59,24 +64,12 @@ int main()
 				REMOVE_EDGE();
 				break;
 				
-			case 7:
-				printf("\n 1.BFS INPUT");
-				printf("\n 2.BFS DISPLAY");
-				printf("\n Choose the Condtion: ");
-				scanf("%d",&k);
+			case 7:				
+				BFS_INPUT();
+				break;
 				
-				if(k==1)
-				{
-					BFS_INPUT();
-				}
-				else if(k==2)
-				{
-					BFS_DISPLAY();
-				}
-				else
-				{
-					printf("\n Invalid Choice \n");
-				}
+			case 8:
+				DFS_INPUT();
 				break;
 				
 			default:
@@ -104,7 +97,7 @@ void ADD_VERTEX()
 
 void DISPLAY()
 {
-	if(nv==NULL)
+	if(nv==0)
 	{
 		printf("\nGraph is Empty\n");
 	}
@@ -124,7 +117,7 @@ void DISPLAY()
 
 void ADD_EDGE()
 {
-	if(nv==NULL)
+	if(nv==0)
 	{
 		printf("\n Graph is Empty \n");
 	}	
@@ -140,7 +133,8 @@ void ADD_EDGE()
 			if(e1>=nv || e1<0 || e2>=nv || e2<0)
 			{
 				printf("\n Invalid EDGE Enter Valid Edge\n");
-				ADD_EDGE();
+				printf("\n %d is the limit of edges and vertex \n",nv-1);
+	
 			}
 			else
 			{
@@ -158,7 +152,7 @@ void ADD_EDGE()
 
 void REMOVE_VERTEX()
 {
-	if(nv==NULL)
+	if(nv==0)
 	{
 		printf("\n Graph is Empty");	
 	}	
@@ -170,14 +164,14 @@ void REMOVE_VERTEX()
 		if(rv<0 || rv>=nv)
 		{
 			printf("\n Invalid Vertex Enter The Valid Vertex \n");
-			REMOVE_VERTEX();
+			printf("\n %d is the limit of edges and vertex \n",nv-1);
 		}
 		else
 		{
 			if(rv==nv-1)
 			{
 				nv--;
-				printf("\n The %dth Vertex Is Deleted \n",rv);
+				printf("\n The %d Vertex Is Deleted \n",rv);
 			}
 			else
 			{
@@ -218,7 +212,7 @@ void REMOVE_EDGE()
 		if(e1>=nv || e1<0 || e2>=nv || e2<0)
 		{
 			printf("\n Invalid EDGE Enter Valid Edge\n");
-			REMOVE_EDGE();
+			printf("\n %d is the limit of edges and vertex \n",nv-1);
 		}
 		else
 		{
@@ -235,7 +229,7 @@ void REMOVE_EDGE()
 
 void BFS_INPUT()
 {
-	if(nv==NULL)
+	if(nv==0)
 	{
 		printf("\n Graph is Empty");
 	}
@@ -254,6 +248,7 @@ void BFS_INPUT()
 		if(start<0 || start>=nv)
 		{
 			printf("\n Invalid Start Vertex\n");
+			printf("\n %d is the limit of Start vertex \n",nv-1);
 		}
 		else
 		{
@@ -262,22 +257,21 @@ void BFS_INPUT()
 		}
 		printf("\n BFS Vertex Stored SuccessFully\n");
 		
-		printf("Want to Display The Output Of BFS Travelling(y/n): ");
-		scanf("%s",&ch);
-		
-		if(ch=='y' || ch=='Y')
-		{
+		printf("\nDisplay The Output Of BFS Travelling \n ");
 			BFS_DISPLAY();
-		}
 	}
 }
 
 void BFS_DISPLAY()
 {
-	if(nv==NULL)
+	if(nv==0)
 	{
 		printf("\n Graph is Empty");	
 	}	
+	else if(visited==NULL)
+	{
+		printf("\n Graph is Not Empty But BFS is Not declared \n ");
+	}
 	else
 	{
 		printf("\n BFS Travelling \n ");
@@ -297,5 +291,48 @@ void BFS_DISPLAY()
 			}	
 		}
 		printf("\n");
+	}
+}
+
+void DFS_INPUT()
+{
+	if(nv==0)
+	{
+		printf("\nGraph is Empty\n");
+	}
+	else
+	{
+		for(i=0;i<nv;i++)
+		{
+			visited[i]=0;
+		}
+
+		printf("Enter Starting Vertex for DFS: ");
+		scanf("%d",&start);
+
+		if(start<0 || start>=nv)
+		{
+			printf("\nInvalid Start Vertex\n");
+		}
+		else
+		{
+			printf("\nDFS Traversal: ");
+			DFS_OUTPUT();
+			printf("\n");
+		}
+	}
+}
+
+void DFS_OUTPUT()
+{
+	printf("%d ",v);
+	visited[v]=1;
+
+	for(i=0;i<nv;i++)
+	{
+		if(a[v][i]==1 && visited[i]==0)
+		{
+			DFS_OUTPUT();
+		}
 	}
 }
