@@ -1,19 +1,19 @@
 #include<iostream>
 using namespace std;
 
-class Vector
+class Fraction
 {
 	int value;			
 	
 	public:	
-		Vector(int v)
+		Fraction(int v)
 		{
 			value=v;
 		}
 		
-		Vector operator -(Vector &obj)
+		Fraction operator *(Fraction &obj)
 		{
-			return Vector(value+obj.value);
+			return Fraction(value*obj.value);
 		}
 		void display()
 		{
@@ -24,15 +24,15 @@ class Vector
 int main()
 {
 	int a,b;
-	cout << "Enter Value of A: ";
+	cout << "Enter Value of Fraction A: ";
 	cin >> a;
 	
-	cout << "Enter Value of B: ";
+	cout << "Enter Value of Fraction B: ";
 	cin >> b;
 	
-	Vector d1(a);
-	Vector d2(b);
-	Vector d3=d1-d2;
+	Fraction d1(a);
+	Fraction d2(b);
+	Fraction d3=d1*d2;
 	
 	d1.display();
 	d2.display();
