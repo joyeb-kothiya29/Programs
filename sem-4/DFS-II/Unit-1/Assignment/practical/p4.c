@@ -55,7 +55,6 @@ int main()
 				ADD_EDGE();
 				break;
 				
-				
 			case 5:
 				REMOVE_VERTEX();
 				break;				
