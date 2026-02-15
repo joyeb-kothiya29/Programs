@@ -3,22 +3,18 @@ using namespace std;
 
 class Employee{
 	public:
-		int i=10,s=1000;
-		Employee(int i, int s){
-			
-			cout << "First Employee Info: "<< endl;
-			cout << "Id is: "<< i << endl;
-			cout << "Salary is: "<< s << endl;
-			
-			cout << "Second Employee Info: "<< endl;
-			cout << "Id is: "<< this->i << endl;
-			cout << "Salary is: "<< this->s << endl;
+		int id=10;
+		int salary=10000;
+		
+		Employee(int id,int salary){			
+			cout <<" Employee id is" << this->id << endl;
+			cout <<" Employee Salary is" << this->salary << endl;			
 		}
 };
 
-int main(){
-	
-	Employee e(20,2000);
-	return 0;	
-}
 
+int main(){
+	Employee e(20,20000);
+	
+	return 0;
+}

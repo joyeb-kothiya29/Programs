@@ -38,7 +38,7 @@ int main()
 		visited[i]=0;
 	}
 	
-	do
+		do
 		{
 			printf("\nEnter Edge 1: ");
 			scanf("%d",&e1);

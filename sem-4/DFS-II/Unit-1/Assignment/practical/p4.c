@@ -133,7 +133,6 @@ void ADD_EDGE()
 			{
 				printf("\n Invalid EDGE Enter Valid Edge\n");
 				printf("\n %d is the limit of edges and vertex \n",nv-1);
-	
 			}
 			else
 			{

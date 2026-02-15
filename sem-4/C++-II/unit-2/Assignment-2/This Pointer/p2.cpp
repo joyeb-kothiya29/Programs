@@ -5,9 +5,7 @@ class Person{
 	public:
 		int age=10;
 		void isolder(int age){
-			cout << "Person 1: " << endl;
 			cout << age << endl;
-			cout << "Person 2: " << endl;
 			cout << this->age << endl;
 		}	
 };
@@ -15,7 +13,7 @@ class Person{
 
 int main(){
 	Person p;
-	p.isolder(20);
+	p.isolder(30);
 	
 	return 0;
 }
