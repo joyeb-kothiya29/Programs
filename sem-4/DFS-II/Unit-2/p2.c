@@ -105,19 +105,21 @@ void display_tree(){
         printf("\n Tree is empty!\n");
         return;
     }
+    else{
+    		
+   		printf("\n========== Tree Traversals ==========");
     
-    printf("\n========== Tree Traversals ==========");
+    	printf("\n Inorder Traversal   (Left-Root-Right): ");
+    	inorder(root);
     
-    printf("\n Inorder Traversal   (Left-Root-Right): ");
-    inorder(root);
+    	printf("\n Preorder Traversal  (Root-Left-Right): ");
+    	preorder(root);
     
-    printf("\n Preorder Traversal  (Root-Left-Right): ");
-    preorder(root);
+    	printf("\n Postorder Traversal (Left-Right-Root): ");
+    	postorder(root);
     
-    printf("\n Postorder Traversal (Left-Right-Root): ");
-    postorder(root);
-    
-    printf("\n=====================================\n");
+    	printf("\n=====================================\n");
+	}
 }
 
 // Inorder: Left -> Root -> Right

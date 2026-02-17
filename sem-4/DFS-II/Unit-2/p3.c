@@ -125,19 +125,20 @@ void display_tree(){
         printf("\n Tree is empty!\n");
         return;
     }
+    else{
+    	printf("\n========== Tree Traversals ==========");
     
-    printf("\n========== Tree Traversals ==========");
+ 	    printf("\n Inorder Traversal   (Left-Root-Right): ");
+    	inorder(root);
     
-    printf("\n Inorder Traversal   (Left-Root-Right): ");
-    inorder(root);
+    	printf("\n Preorder Traversal  (Root-Left-Right): ");
+    	preorder(root);
     
-    printf("\n Preorder Traversal  (Root-Left-Right): ");
-    preorder(root);
+    	printf("\n Postorder Traversal (Left-Right-Root): ");
+    	postorder(root);
     
-    printf("\n Postorder Traversal (Left-Right-Root): ");
-    postorder(root);
-    
-    printf("\n=====================================\n");
+    	printf("\n=====================================\n");
+	}
 }
 
 // Inorder: Left -> Root -> Right
@@ -173,31 +174,32 @@ void search_tree(){
         printf("\n Tree is empty!\n");
         return;
     }
+    else{
+    	int search_value;
+    	printf("\nEnter value to search: ");
+    	scanf("%d", &search_value);
     
-    int search_value;
-    printf("\nEnter value to search: ");
-    scanf("%d", &search_value);
+    	struct tree *current = root;
+    	int found = 0;
     
-    struct tree *current = root;
-    int found = 0;
+    	while(current != NULL){
+        	if(search_value == current->info){
+            	printf("\n Value %d FOUND in the tree!\n", search_value);
+            	found = 1;
+            	break;
+        	}
+        	else if(search_value < current->info){
+            	current = current->left_root;
+        	}
+        	else{
+            	current = current->right_root;
+        	}
+    	}
     
-    while(current != NULL){
-        if(search_value == current->info){
-            printf("\n Value %d FOUND in the tree!\n", search_value);
-            found = 1;
-            break;
-        }
-        else if(search_value < current->info){
-            current = current->left_root;
-        }
-        else{
-            current = current->right_root;
-        }
-    }
-    
-    if(!found){
-        printf("\n Value %d NOT FOUND in the tree!\n", search_value);
-    }
+    	if(!found){
+        	printf("\n Value %d NOT FOUND in the tree!\n", search_value);
+    	}
+	}
 }
 
 // Find minimum value node (used in deletion)
@@ -262,35 +264,36 @@ void delete_tree(){
         printf("\n Tree is empty! Nothing to delete.\n");
         return;
     }
+    else{
+    	int delete_value;
+    	printf("\nEnter value to delete: ");
+    	scanf("%d", &delete_value);
     
-    int delete_value;
-    printf("\nEnter value to delete: ");
-    scanf("%d", &delete_value);
+    	// First check if value exists
+    	struct tree *current = root;
+    	int found = 0;
     
-    // First check if value exists
-    struct tree *current = root;
-    int found = 0;
+    	while(current != NULL){
+        	if(delete_value == current->info){
+            	found = 1;
+            	break;
+        	}
+        	else if(delete_value < current->info){
+            	current = current->left_root;
+        	}
+        	else{
+            	current = current->right_root;
+        	}
+    	}
     
-    while(current != NULL){
-        if(delete_value == current->info){
-            found = 1;
-            break;
-        }
-        else if(delete_value < current->info){
-            current = current->left_root;
-        }
-        else{
-            current = current->right_root;
-        }
-    }
+    	if(!found){
+        	printf("\n Value %d NOT FOUND in the tree! Cannot delete.\n", delete_value);
+        	return;
+    	}
     
-    if(!found){
-        printf("\n Value %d NOT FOUND in the tree! Cannot delete.\n", delete_value);
-        return;
-    }
-    
-    root = delete_node(root, delete_value);
-    printf("\n Value %d deleted successfully!\n", delete_value);
+    	root = delete_node(root, delete_value);
+    	printf("\n Value %d deleted successfully!\n", delete_value);
+	}    
 }
 
 // Replace/Update function
@@ -299,39 +302,40 @@ void replace_tree(){
         printf("\n Tree is empty! Nothing to replace.\n");
         return;
     }
+    else{
+    	int old_value, new_value;
+    	printf("\nEnter value to replace: ");
+    	scanf("%d", &old_value);
     
-    int old_value, new_value;
-    printf("\nEnter value to replace: ");
-    scanf("%d", &old_value);
+    	// First check if old value exists
+    	struct tree *current = root;
+    	int found = 0;
     
-    // First check if old value exists
-    struct tree *current = root;
-    int found = 0;
+    	while(current != NULL){
+        	if(old_value == current->info){
+            	found = 1;
+            	break;
+        	}
+        	else if(old_value < current->info){
+            	current = current->left_root;
+        	}
+        	else{
+            	current = current->right_root;
+        	}
+    	}
     
-    while(current != NULL){
-        if(old_value == current->info){
-            found = 1;
-            break;
-        }
-        else if(old_value < current->info){
-            current = current->left_root;
-        }
-        else{
-            current = current->right_root;
-        }
-    }
+    	if(!found){
+        	printf("\n Value %d NOT FOUND in the tree! Cannot replace.\n", old_value);
+        	return;
+    	}
     
-    if(!found){
-        printf("\n Value %d NOT FOUND in the tree! Cannot replace.\n", old_value);
-        return;
-    }
+    	printf("Enter new value: ");
+    	scanf("%d", &new_value);
     
-    printf("Enter new value: ");
-    scanf("%d", &new_value);
+    	// Delete old value and insert new value
+    	root = delete_node(root, old_value);
+    	root = insert(root, new_value);
     
-    // Delete old value and insert new value
-    root = delete_node(root, old_value);
-    root = insert(root, new_value);
-    
-    printf("\n Value %d replaced with %d successfully!\n", old_value, new_value);
+    	printf("\n Value %d replaced with %d successfully!\n", old_value, new_value);
+	} 
 }

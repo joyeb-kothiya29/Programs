@@ -13,7 +13,7 @@ class Length
 		
 		Length operator >(Length &obj)
 		{
-			if(value>obj.value){
+			if(value<obj.value){
 				return value;
 			}
 			else{
@@ -35,13 +35,13 @@ int main()
 	cout << "Enter Value of Length In Centimeter B: ";
 	cin >> b;
 	
-	Length d1(a);
-	Length d2(b);
-	Length d3=d1>d2;
+	Length l1(a);
+	Length l2(b);
+	Length l3=l1>l2;
 	
-	d1.display();
-	d2.display();
-	d3.display();
+	l1.display();
+	l2.display();
+	l3.display();
 	
 	return 0;
 }
